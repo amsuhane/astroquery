@@ -95,7 +95,7 @@ def test_download_dastcom5_downloads_file(mocker):
     mock_zipfile.is_zipfile.return_value = False
     Dastcom5.download_dastcom5()
     mock_request.assert_called_once_with(
-        Dastcom5.FTP_DB_URL + "dastcom5.zip",
-        os.path.join(Dastcom5.local_path, "dastcom5.zip"),
-        Dastcom5._show_download_progress,
+        Dastcom5.ftp_url + "dastcom5.zip",
+        filename=os.path.join(Dastcom5.local_path, "dastcom5.zip"),
+        reporthook=Dastcom5.self._show_download_progress(unit='B', unit_scale=True, miniters=1, desc="dastcom5.zip").update_to,
     )
